@@ -6,6 +6,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:shop_ease/features/authentication/screens/password_configuration/forgot_password.dart';
 import 'package:shop_ease/features/authentication/screens/signup/signup.dart';
 
+import '../../../../../navigation_menu.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 
@@ -57,7 +58,7 @@ class TLoginForm extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections,),
 
               ///Signin button
-              SizedBox(width:double.infinity,child: ElevatedButton(onPressed: (){}, child: Text(TTexts.signIn))),
+              SizedBox(width:double.infinity,child: ElevatedButton(onPressed: ()=>Get.to(()=>const NavigationMenu()), child: Text(TTexts.signIn))),
               const SizedBox(height: TSizes.spaceBtwItems,),
               ///create account button
               SizedBox(width:double.infinity,child: OutlinedButton(onPressed: ()=> Get.to(()=>const SignupScreen()), child: Text(TTexts.createAccount))),
