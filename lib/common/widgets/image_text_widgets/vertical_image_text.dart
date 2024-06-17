@@ -29,6 +29,7 @@ class TVertivalImageText extends StatelessWidget {
               height: 56,
               padding:const EdgeInsets.all(TSizes.sm),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
                 color: backgroundColor??(THelperFunctions.isDarkMode(context)? TColors.black:TColors.white),
               ),
               child: Center(
