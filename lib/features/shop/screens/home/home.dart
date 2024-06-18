@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return   Scaffold(
       body:SingleChildScrollView(
 
         child: Column(
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         ///---Heading---
                         TSectionHeading(title:'Popular Catagories' ,showActionButton: false,textColor: Colors.white,),
-                        SizedBox(height: TSizes.spaceBtwSections,),
+                        SizedBox(height: TSizes.spaceBtwItems,),
                         
                         ///---Catagories---
                         THomeCategories(),
@@ -59,6 +59,17 @@ class HomeScreen extends StatelessWidget {
             ],
             ),
               
+            ),
+
+            ///Body
+            Padding(
+              padding: const EdgeInsets.all(TSizes.defaultSpace),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(TSizes.md),
+                ),
+                child: ClipRRect(borderRadius: BorderRadius.circular(TSizes.md),child: Image(image:AssetImage(TImages.banner3))),
+              ),
             ),
           ],
         ),
