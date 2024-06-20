@@ -1,8 +1,11 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shop_ease/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:shop_ease/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:shop_ease/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:shop_ease/features/shop/screens/home/widgets/promo_slider.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
@@ -16,7 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return Scaffold(
       body:SingleChildScrollView(
 
         child: Column(
@@ -53,21 +56,15 @@ class HomeScreen extends StatelessWidget {
             ///Body
             Padding(
               padding: const EdgeInsets.all(TSizes.defaultSpace),
-              child: CarouselSlider(
-                options:CarouselOptions(
-                    viewportFraction:0.8,)
-    )
-                items:[
-                  TRoundedImage(imageUrl: TImages.banner3,),
-                  TRoundedImage(imageUrl: TImages.banner3,),
-                  TRoundedImage(imageUrl: TImages.banner3,),
-                ]
+              child: TPromoSlider(banners: [TImages.banner1,TImages.banner2,TImages.banner3,TImages.banner4,TImages.banner5],),
+
               )
-            ),
-          ],
+            ],
+
         ),
       ),
     );
   }
 }
+
 
