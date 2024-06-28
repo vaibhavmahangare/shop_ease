@@ -10,6 +10,7 @@ import 'package:shop_ease/utils/constants/enums.dart';
 import 'package:shop_ease/utils/constants/image_strings.dart';
 import 'package:shop_ease/utils/helpers/helper_functions.dart';
 
+import '../../../../common/widgets/brands/brand_card.dart';
 import '../../../../common/widgets/images/t_circular_image.dart';
 import '../../../../common/widgets/texts/t_brandtitle_with_verfiedicon.dart';
 import '../../../../utils/constants/colors.dart';
@@ -20,87 +21,57 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      ///---AppBar---
-      appBar: TAppBar(
-        title: Text('Store',style: Theme.of(context).textTheme.headlineMedium,),
-        actions: [
-          TCartCounterIcon(onPressed: (){},),
-        ],
-      ),
-
-      ///---Body---
-      body: NestedScrollView(headerSliverBuilder:(_,innerBoxIsScrollabled){
-        return [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: true,
-            floating: true,
-            backgroundColor: THelperFunctions.isDarkMode(context)?TColors.black:TColors.white,
-            expandedHeight: 440,
-            
-            flexibleSpace: Padding(
-              padding: EdgeInsets.all(TSizes.defaultSpace),
-              child:ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap:true ,
-                children: [
-                  ///---Search Bar---
-                  SizedBox(height: TSizes.spaceBtwItems,),
-                  TSearchContainer(text: 'Search In Store',showBorder: true,showBackground: false,padding: EdgeInsets.zero,),
-                  SizedBox(height:TSizes.spaceBtwSections,),
-
-                  ///Featured Brands
-                  TSectionHeading(title: "Featured Brands",showActionButton: true,onPressed: (){},),
-                  const SizedBox(height: TSizes.spaceBtwItems/1.5,),
-
-                  TGridLayout(itemCount: 4, mainAxisExtent: 80,itemBuilder: (_,index){
-                    return GestureDetector(
-                      onTap: (){},
-                      child: TRoundedContainer(
-                        padding: EdgeInsets.all(TSizes.sm),
-                        showBorder: true,
-                        backgroundColor: Colors.transparent,
-                        child: Row(
-                          children: [
-                            ///icon
-                            Flexible(
-                              child: TCircularImage(
-                                isNetworkImage: false,
-                                image: TImages.clothIcon,
-                                backgroundColor: Colors.transparent,
-                                overlayColor:THelperFunctions.isDarkMode(context)?TColors.white:TColors.black ,
-                              ),
-                            ),
-                            SizedBox(width: TSizes.spaceBtwItems/2,),
-
-                            ///---Text---
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TBrandTitleWithVerfiedIcon(title: 'Nike',brandTextSize:TextSizes.large ,),
-                                  Text(
-                                    '256 Products',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: Theme.of(context).textTheme.labelMedium,
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  })
-                ],
-              ) ,
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+      
+        ///---AppBar---
+        appBar: TAppBar(
+          title: Text('Store',style: Theme.of(context).textTheme.headlineMedium,),
+          actions: [
+            TCartCounterIcon(onPressed: (){},),
+          ],
+        ),
+      
+        ///---Body---
+        body: NestedScrollView(headerSliverBuilder:(_,innerBoxIsScrollabled){
+          return [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              pinned: true,
+              floating: true,
+              backgroundColor: THelperFunctions.isDarkMode(context)?TColors.black:TColors.white,
+              expandedHeight: 440,
+              
+              flexibleSpace: Padding(
+                padding: EdgeInsets.all(TSizes.defaultSpace),
+                child:ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap:true ,
+                  children: [
+                    ///---Search Bar---
+                    SizedBox(height: TSizes.spaceBtwItems,),
+                    TSearchContainer(text: 'Search In Store',showBorder: true,showBackground: false,padding: EdgeInsets.zero,),
+                    SizedBox(height:TSizes.spaceBtwSections,),
+      
+                    ///Featured Brands
+                    TSectionHeading(title: "Featured Brands",showActionButton: true,onPressed: (){},),
+                    const SizedBox(height: TSizes.spaceBtwItems/1.5,),
+      
+                    TGridLayout(itemCount: 4, mainAxisExtent: 80,itemBuilder: (_,index){
+                      return TBrandCard();
+                    })
+                  ],
+                ) ,
+              ),
+      
+              ///---tABS---
+              ///
+              bottom: TTabBar(),
             ),
-          ),
-        ];
-      },body: Container(),),
+          ];
+        },body: Container(),),
+      ),
     );
   }
 }
