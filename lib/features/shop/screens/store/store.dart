@@ -10,6 +10,7 @@ import 'package:shop_ease/utils/constants/enums.dart';
 import 'package:shop_ease/utils/constants/image_strings.dart';
 import 'package:shop_ease/utils/helpers/helper_functions.dart';
 
+import '../../../../common/widgets/appbar/tabbar.dart';
 import '../../../../common/widgets/brands/brand_card.dart';
 import '../../../../common/widgets/images/t_circular_image.dart';
 import '../../../../common/widgets/texts/t_brandtitle_with_verfiedicon.dart';
@@ -59,7 +60,7 @@ class StoreScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.spaceBtwItems/1.5,),
       
                     TGridLayout(itemCount: 4, mainAxisExtent: 80,itemBuilder: (_,index){
-                      return TBrandCard();
+                      return TBrandCard(showBorder: true,);
                     })
                   ],
                 ) ,
@@ -67,10 +68,89 @@ class StoreScreen extends StatelessWidget {
       
               ///---tABS---
               ///
-              bottom: TTabBar(),
+              bottom: const TTabBar(tabs: [
+                Tab(child: Text("Sports"),),
+                Tab(child: Text("Electronics"),),
+                Tab(child: Text("Clothing"),),
+                Tab(child: Text("Cosmetics"),),
+                Tab(child: Text("Furniture"),),
+              ],),
             ),
           ];
-        },body: Container(),),
+        },
+          body:TabBarView(
+          children: [
+            Padding(padding: EdgeInsets.all(TSizes.defaultSpace),
+            child: Column(
+              children: [
+                ///---Brands
+                TBrandShowcase()
+                ///Products
+              ],
+            ),
+            )
+          ],
+        ),
+        ),
+      ),
+    );
+  }
+}
+
+class TBrandShowcase extends StatelessWidget {
+  const TBrandShowcase({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TRoundedContainer(
+      showBorder: true,
+
+      borderColor: TColors.darkGrey,
+      backgroundColor: Colors.transparent,
+      margin: EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+      child: Column(
+
+        children: [
+          ///---Brands with product count---
+          TBrandCard(showBorder: false,),
+
+          ///---Brands top 3 images---
+          Row(
+            children: [
+              Expanded(
+                child: TRoundedContainer(
+                  height: 100,
+
+                  backgroundColor:THelperFunctions.isDarkMode(context)?TColors.darkGrey:TColors.light ,
+                  margin: EdgeInsets.only(right: TSizes.sm),
+                  padding: EdgeInsets.all(TSizes.md),
+                  child: Image(fit:BoxFit.contain ,image: AssetImage(TImages.productImage3),),
+                ),
+              ),
+              Expanded(
+                child: TRoundedContainer(
+                  height: 100,
+                  backgroundColor:THelperFunctions.isDarkMode(context)?TColors.darkGrey:TColors.light ,
+                  margin: EdgeInsets.only(right: TSizes.sm),
+                  padding: EdgeInsets.all(TSizes.md),
+                  child: Image(fit:BoxFit.contain ,image: AssetImage(TImages.productImage5),),
+                ),
+              ),
+              Expanded(
+                child: TRoundedContainer(
+                  height: 100,
+                  backgroundColor:THelperFunctions.isDarkMode(context)?TColors.darkGrey:TColors.light ,
+                  margin: EdgeInsets.only(right: TSizes.sm),
+                  padding: EdgeInsets.all(TSizes.md),
+                  child: Image(fit:BoxFit.contain ,image: AssetImage(TImages.productImage10),),
+                ),
+              ),
+            ],
+          )
+        ],
+
       ),
     );
   }

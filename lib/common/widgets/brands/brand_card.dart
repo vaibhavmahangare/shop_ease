@@ -12,16 +12,18 @@ import '../texts/t_brandtitle_with_verfiedicon.dart';
 
 class TBrandCard extends StatelessWidget {
   const TBrandCard({
-    super.key,
+    super.key, required this.showBorder, this.onTap,
   });
 
+  final bool showBorder;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: onTap,
       child: TRoundedContainer(
         padding: EdgeInsets.all(TSizes.sm),
-        showBorder: true,
+        showBorder: showBorder,
         backgroundColor: Colors.transparent,
         child: Row(
           children: [
